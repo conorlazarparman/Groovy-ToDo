@@ -32,6 +32,8 @@ function TodoList() {
     const [name, setName] = useState('');
     const [notes, setNotes] = useState('');
     const [due, setDue] = useState('');
+    //Index to useState
+    const [editingIndex, setEditingIndex] = useState(null);
 
     //This is your boolean flag for showing a form.
     const [showForm, setShowForm] = useState(false);
@@ -44,10 +46,13 @@ function TodoList() {
                     <p>Task: {task[0]}</p>
                     <p>Notes: {task[1]}</p>
                     <p>Due: {task[2]}</p>
-                    <button onClick={() => deleteTask(index)}>Remove</button>
+                    <button onClick={() => {
+                        deleteTask(index);
+                        setEditingIndex(index);
+                    }}>Remove</button>
                     <button onClick={() => setShowForm(!showForm)}>Edit</button>
                     <p>
-                        {showForm &&
+                        {editingIndex == index && showForm &&
                             <>
                             <div>
                                 <input type="text" value={name} onChange={(e) => handleChange(e, "title")} placeholder="Task Title"></input>
@@ -80,6 +85,7 @@ function TodoList() {
             newTasks[index][2] = [due];
         }
         setTasks(newTasks);
+        setEditingIndex(null);
         setShowForm(false);
         setName('')
         setNotes('')

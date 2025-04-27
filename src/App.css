@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+.big_text
+{
+    font-size: 80px;
+    font-family: Papyrus;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.holographic-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: greenyellow;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    font-family: 'Bauhaus 93'
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .holographic-text::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient( 120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100% );
+        transform: skewX(-25deg);
+        animation: swipe 2.5s infinite;
+    }
+
+@keyframes swipe {
+    0% {
+        left: -75%;
+    }
+
+    100% {
+        left: 125%;
+    }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.todo-item {
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    width: 400px;
+    text-align: left;
+    font-size: 20px;
+    animation: colorChange 3s infinite, ease-in-out;
+    font-family: 'Bauhaus 93';
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes colorChange{
+    0% {color: black}
+    50% {color: greenyellow}
+    100% {color: black}
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.changing_text
+{
+    animation: colorChange 3s infinite;
+    font-size: 80px;
 }
